@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://de6rq6yqehrci"]
+
+[ext_resource type="Texture2D" uid="uid://ccq4gpkjxv10r" path="res://Artwork/Test Artwork/TeeJayDefault.png" id="1_7stq1"]
+
+[node name="Enemy" type="Node2D"]
+
+[node name="TeeJayDefault" type="Sprite2D" parent="."]
+texture = ExtResource("1_7stq1")
