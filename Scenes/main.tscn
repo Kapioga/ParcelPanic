@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbaol0hhvwsxi"]
+[gd_scene load_steps=9 format=3 uid="uid://bbaol0hhvwsxi"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_vaskr"]
 [ext_resource type="PackedScene" uid="uid://dyxqxipmuafyr" path="res://Scenes/buttons.tscn" id="1_x2wjs"]
 [ext_resource type="PackedScene" uid="uid://h3dl3j2swiig" path="res://Scenes/player.tscn" id="2_lgvup"]
 [ext_resource type="PackedScene" uid="uid://de6rq6yqehrci" path="res://Scenes/enemy.tscn" id="3_q7fci"]
+[ext_resource type="Script" path="res://Scripts/buttons.gd" id="3_yg0y8"]
+[ext_resource type="Texture2D" uid="uid://dyfrlj84u6c7m" path="res://Artwork/UI/Paper.png" id="4_fplbt"]
+[ext_resource type="Texture2D" uid="uid://bu73eq4iw2st3" path="res://Artwork/UI/Rock.png" id="5_se6m1"]
+[ext_resource type="Texture2D" uid="uid://b7t2tv4rm66r1" path="res://Artwork/UI/Scissors.png" id="6_xm7xr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vaskr")
 
 [node name="Buttons" parent="." instance=ExtResource("1_x2wjs")]
+visible = false
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
@@ -16,6 +21,58 @@ offset_left = 619.0
 offset_top = 61.0
 offset_right = 619.0
 offset_bottom = 61.0
+
+[node name="ButtonsControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 619.0
+offset_top = 61.0
+offset_right = 619.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_yg0y8")
+
+[node name="ControlButtons" type="Control" parent="ButtonsControl"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = 48.0
+offset_right = 107.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ButtonsControl/ControlButtons"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PaperButton" type="TextureButton" parent="ButtonsControl/ControlButtons/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("4_fplbt")
+
+[node name="RockButton" type="TextureButton" parent="ButtonsControl/ControlButtons/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture_normal = ExtResource("5_se6m1")
+
+[node name="ScissorsButton" type="TextureButton" parent="ButtonsControl/ControlButtons/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("6_xm7xr")
 
 [node name="Player" parent="." instance=ExtResource("2_lgvup")]
 position = Vector2(255, 335)
@@ -29,6 +86,12 @@ offset_top = 52.0
 offset_right = 397.0
 offset_bottom = 93.0
 step = 1.0
-value = 100.0
+value = 50.0
 rounded = true
 show_percentage = false
+
+[connection signal="pressed" from="ButtonsControl/ControlButtons/MarginContainer/PaperButton" to="ButtonsControl" method="_on_paper_button_pressed"]
+[connection signal="pressed" from="ButtonsControl/ControlButtons/MarginContainer/RockButton" to="ButtonsControl" method="_on_rock_button_pressed"]
+[connection signal="pressed" from="ButtonsControl/ControlButtons/MarginContainer/ScissorsButton" to="ButtonsControl" method="_on_scissors_button_pressed"]
+
+[editable path="Buttons"]

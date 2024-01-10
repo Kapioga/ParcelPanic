@@ -1,21 +1,38 @@
 extends Node2D
 
-var ROCK
-var PAPER
-var SCISSORS
-var enemy_choice = ROCK, PAPER, SCISSORS
+@onready var paper_button = $ButtonsControl/ControlButtons/MarginContainer/PaperButton
+@onready var rock_button = $ButtonsControl/ControlButtons/MarginContainer/RockButton
+@onready var scissors_button = $ButtonsControl/ControlButtons/MarginContainer/ScissorsButton
+@onready var health_bar = $HealthBar
 
-# Called when the node enters the scene tree for the first time.
+var enemy_chose
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func enemy_choosing(enemy_choice):
-	var enemy_dis = randomize(enemy_choice)
-	print(enemy_dis)
+	interact()
+	enemy_choice(enemy_chose)
 	
-#func play_logic(ROCK, PAPER, SCISSORS):
+func interact():
+	paper_button.pressed.connect(func():
+		if enemy_choice(enemy_chose) == "Scissors":
+			health_bar.value -= 1
+		if enemy_choice(enemy_chose) == "Rock":
+			health_bar.value += 1
+		print(health_bar.value)
+		)
+
+#Randomises Enemy choices
+func enemy_choice(picker):
+	var pickit = randi() % 2
+	if pickit == 0:
+		picker = "Rock"
+		print(picker)
+		return picker
+	if pickit == 1:
+		picker = "Paper"
+		print(picker)
+		return picker
+	if pickit == 2:
+		picker = "Scissors"
+		print(picker)
+		return picker
+
