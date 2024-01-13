@@ -9,18 +9,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-
 func _process(delta):
 	pass
 
-
-func _on_paper_button_pressed():
-	print("Pressed Paper")
-
-
-func _on_rock_button_pressed():
-	print("Pressed Rock")
-
-
-func _on_scissors_button_pressed():
-	print("Pressed Scissors")

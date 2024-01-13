@@ -51,7 +51,3 @@ texture_normal = ExtResource("2_gm6k4")
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("3_khfew")
-
-[connection signal="pressed" from="ControlButtons/MarginContainer/PaperButton" to="." method="_on_paper_button_pressed"]
-[connection signal="pressed" from="ControlButtons/MarginContainer/RockButton" to="." method="_on_rock_button_pressed"]
-[connection signal="pressed" from="ControlButtons/MarginContainer/ScissorsButton" to="." method="_on_scissors_button_pressed"]
